@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>在此处插入标题</title>
+<style>
+td {
+	width: 200px;
+	height: 30px;
+	font-size: 12px;
+}
+
+a {
+	color: #000000;
+	text-decoration: none;
+}
+</style>
+<script src='public.js'></script>
+<script>
+	//删除某条数据
+	function del(id, page) {
+		var flag = confirm('确定删除？');
+		if (flag == false) {
+			return false;
+		}
+		$.get('delete.php', 'id=' + id, function(msg) {
+			init(page);
+		});
+	}
+
+	//显示某一页的数据
+	function init(page) {
+		$.get('demo09.php', 'page=' + page, function(msg) {
+			$('res').innerHTML = msg;
+		});
+	}
+
+	window.onload = function() {
+		//默认显示第一页数据
+		init(1);
+	};
+</script>
+</head>
+<body>
+	<div id='res'></div>
+</body>
+</html>
